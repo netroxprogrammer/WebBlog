@@ -4,9 +4,17 @@
         <servlet-name>UserControl</servlet-name>
         <servlet-class>UserControl</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>PostStatus</servlet-name>
+        <servlet-class>PostStatus</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>UserControl</servlet-name>
         <url-pattern>/UserControl</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>PostStatus</servlet-name>
+        <url-pattern>/PostStatus</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

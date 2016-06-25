@@ -5,6 +5,7 @@
  */
 
 import DbHandler.DbConnection;
+import Utils.UplaodStatus;
 import Utils.Users;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -40,9 +41,8 @@ public class UserControl extends HttpServlet {
         String name = request.getParameter("email");
         String  pass = request.getParameter("password");
               
-         if(checkLogin(name,pass)){
-               HttpSession  session = request.getSession(true);
-               session.setAttribute("login", new String("true"));
+         if(checkLogin(name,pass,request)){
+             //  session.setAttribute("login", );
                response.sendRedirect("index.jsp");
                
          }
@@ -82,13 +82,18 @@ public class UserControl extends HttpServlet {
         }
     }
     
-    public boolean checkLogin(String  name, String pass){
+    public boolean checkLogin(String  name, String pass,HttpServletRequest request){
          try{
            Users user = dbcon.loginUser(name, pass);
          
            if(user.getUserEmail()!=null && user.getUserName()!=null){
                System.out.println("User Found");
-              return true; 
+               HttpSession  session = request.getSession(true);
+               session.setAttribute("login", new String("true"));
+              session.setAttribute("name",  user.getUserName());
+              session.setAttribute("id",  user.getUserId());
+               return true; 
+    
            }
            else{
                System.out.println("User Not Found");
@@ -100,6 +105,6 @@ public class UserControl extends HttpServlet {
         }
          return false;
     }
-    
+   
 
 }

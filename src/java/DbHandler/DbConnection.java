@@ -5,12 +5,16 @@
  */
 package DbHandler;
 
+import Utils.Category;
+import Utils.Comments;
 import Utils.Constants;
+import Utils.UplaodStatus;
 import Utils.Users;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.ArrayList;
 
 /**
  *
@@ -81,5 +85,125 @@ public class DbConnection {
            // }
         }
         return  false;
+    }
+    
+    /**
+     * Handle Category
+     * @return
+     * @throws Exception 
+     */
+    public ArrayList<Category> getCategory() throws Exception{
+           Statement statement = null;
+        ArrayList<Category> list  = new ArrayList();
+           Connection getcon  = getConnection();
+      statement =  getcon.createStatement();
+       String Sql = "select *from category";
+        ResultSet rs =statement.executeQuery(Sql);
+        while(rs.next()){
+       Category category = new Category();
+               category.setId(rs.getInt("id"));
+               category.setCategory(rs.getString("category"));
+               list.add(category);
+        }
+        
+        return list;
+    }
+     
+    /**
+     *  @uplaodStatus 
+     * @param post
+     * @return
+     * @throws Exception 
+     */
+    public boolean uplaodStatus(UplaodStatus post) throws Exception{
+       
+        Statement statement = null;
+          Connection getcon = getConnection();
+             statement = getcon.createStatement();
+          String  sql =" insert  into poststatus(title, author, category,Description,userId,role) "+
+                  "values('"+post.getTitle()+"','"+post.getAuthor()+"','"+post.getCategory()+"','"+post.getDescription()+"','"+post.getUserId()+"','"+post.getRole()+"')";
+          statement.execute(sql);
+          getcon.close();
+       return true;
+    }
+    
+    
+   /**
+    *   Read Posts 
+    * @return
+    * @throws Exception 
+    */
+    
+    public ArrayList<UplaodStatus> readPosts() throws Exception{
+          ArrayList<UplaodStatus>  list= new ArrayList();
+        Connection con = getConnection();
+        Statement statement =  null;
+        ResultSet rs = null;
+             statement = con.createStatement();
+          String  sql ="select *from poststatus";
+           rs= statement.executeQuery(sql);
+          if(rs!=null){
+          while(rs.next()){
+              UplaodStatus post = new UplaodStatus();
+              post.setId(rs.getInt("id"));
+              post.setTitle(rs.getString("title"));
+              post.setAuthor(rs.getString("author"));
+               post.setTime(rs.getTimestamp("time"));
+               post.setCategory(rs.getString("category"));
+              post.setDescription(rs.getString("Description"));
+               post.setUserId(rs.getInt("userId"));
+              post.setRole(rs.getString("role"));
+             
+             
+              list.add(post);
+          }
+          }
+        
+        //  rs.close();
+          con.close();
+          return  list;
+    }
+    
+    public boolean addComments(Comments comments) throws Exception{
+        
+        Statement statement = null;
+          Connection getcon = getConnection();
+             statement = getcon.createStatement();
+          String  sql =" insert  into comments(comment, userId, userName,postId) "+
+                  "values('"+comments.getComment()+"','"+comments.getUserid()+"','"+comments.getUserName()+"','"+comments.getPostId()+"')";
+          statement.execute(sql);
+          getcon.close();
+       return true;
+    }
+    
+    /**
+     * read  Comments
+     * @return
+     * @throws Exception 
+     */
+    public ArrayList<Comments> readComments(int  postid) throws Exception{
+            ArrayList<Comments>  list= new ArrayList();
+        Connection con = getConnection();
+        Statement statement =  null;
+        ResultSet rs = null;
+             statement = con.createStatement();
+          String  sql ="select *from comments where postId='"+postid+"'";
+           rs= statement.executeQuery(sql);
+          if(rs!=null){
+          while(rs.next()){
+              
+              Comments comments = new Comments();
+              comments.setId(rs.getInt("id"));
+              comments.setComment(rs.getString("comment"));
+              comments.setPostId(rs.getInt("postId"));
+              comments.setUserName(rs.getString("userName"));
+              comments.setTime(rs.getTimestamp("time"));
+              comments.setUserid(rs.getInt("userId"));
+              System.out.println("user Comment"+rs.getString("comment"));
+              list.add(comments);
+          }
+          }
+          con.close();
+          return  list;
     }
 }
