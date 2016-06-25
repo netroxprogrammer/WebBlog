@@ -4,12 +4,23 @@
 <%@page import="Utils.UplaodStatus"%>
 <%@page import="Utils.UplaodStatus"%>
 <%@page import="DbHandler.DbConnection"%>
+
+     
 <% 
+    
+     DbConnection db = new DbConnection();
  if(session!=null && session.getAttribute("login")!=null){
           
+    if(request.getParameter("comment")!=null && request.getParameter("uid")!=null){
         
+         Comments comment = new Comments();
+         comment.setComment((String)request.getParameter("comment"));
+         comment.setId(Integer.parseInt(request.getParameter("uid")));
+         db.updateComments(comment);
+         response.sendRedirect("home.jsp");
+    }
     int  userid1= (Integer)session.getAttribute("id");
-    DbConnection db = new DbConnection();  
+     
     if(request.getParameter("submit")!=null){
    
     Comments comment =  new Comments();
@@ -28,10 +39,23 @@
     
 %>
 <jsp:include page="includes/header.jsp" />
+<script>
+      function takeInput(){
+        var person = prompt("Enter Comment", "");
+if (person != null) {
+    var id = document.getElementById("button").value;
+ window.location.replace("home.jsp?comment="+person+"&uid="+id);
+}
+    }
+    
+    
+</script>
 <div class="row">
 <div class="form-group">
   <label for="" class="col-sm-4 control-label">Search By Category:</label>
    <div class="col-sm-10">
+   
+       <form action="search.jsp">
        <select class="form-control" name="category">
      
  <%
@@ -40,11 +64,15 @@
   %>
  
   <option value="<%=cat.getCategory() %>"><%=cat.getCategory() %></option>
- <%}%>
+  
+  <%}%>
+
   </select>
   <br>
   <center> <input type="submit" name="Search"  value="Search" class="btn btn-sm btn-primary">  </center>  
-   </div>
+   
+       </form>
+  </div>
 </div>
     </div>
 <br><br><br>
@@ -68,12 +96,24 @@ for(UplaodStatus post : list){
 ArrayList<Comments> cmnt = db.readComments(post.getId());
 for(Comments c : cmnt){
 %>
- <h4 class="media-heading"><font color="blue"><%=c.getUserName() %></font><br>
+
+    <input type="hidden" name="check" value="delete">
+ <h4 class="media-heading"><font color=lue"><%=c.getUserName() %></font><br>
     <small><%=c.getComment() %></small> <br>
+     
     <small> By <%=c.getUserName() %></small> 
+    <%
+    if(c.getUserid()== userid1){
+    %>
+   
+    <a href="UserControl?id=<%=c.getId() %>" class="btn btn-link">delete</a>
+   
+        <button  type="button" id="button"  value="<%=c.getId() %>" name="edit" onclick="takeInput();" class="btn btn-link" >edit</button>
+    <%}%>
     <br>
     
  </h4>
+</form
 <%
 }
 %>

@@ -206,4 +206,64 @@ public class DbConnection {
           con.close();
           return  list;
     }
+    
+    /*
+    Delete Comments
+    */
+    public void deleteComments(int id) throws Exception{
+
+          Statement statement = null;
+          Connection getcon = getConnection();
+          statement = getcon.createStatement();
+          String  sql =" Delete from comments where id='"+id+"' ";
+          statement.execute(sql);
+          getcon.close();
+    }
+    
+    /*
+     Search Posts
+    */
+    public ArrayList<UplaodStatus> searchPost(String catgName) throws Exception{
+          ArrayList<UplaodStatus>  list= new ArrayList();
+        Connection con = getConnection();
+        Statement statement =  null;
+        ResultSet rs = null;
+             statement = con.createStatement();
+          String  sql ="select *from poststatus where  category= '"+catgName+"'";
+           rs= statement.executeQuery(sql);
+          if(rs!=null){
+          while(rs.next()){
+              UplaodStatus post = new UplaodStatus();
+              post.setId(rs.getInt("id"));
+              post.setTitle(rs.getString("title"));
+              post.setAuthor(rs.getString("author"));
+               post.setTime(rs.getTimestamp("time"));
+               post.setCategory(rs.getString("category"));
+              post.setDescription(rs.getString("Description"));
+               post.setUserId(rs.getInt("userId"));
+              post.setRole(rs.getString("role"));
+             
+             
+              list.add(post);
+          }
+          }
+        
+        //  rs.close();
+          con.close();
+          return  list;
+    }
+    
+    /*
+    Update Comments 
+    */
+    public void updateComments(Comments comment) throws Exception{
+        
+
+          Statement statement = null;
+          Connection getcon = getConnection();
+          statement = getcon.createStatement();
+          String  sql =" Update comments  set comment='"+comment.getComment()+"' where id='"+comment.getId()+"' ";
+          statement.executeUpdate(sql);
+          getcon.close();
+    }
 }

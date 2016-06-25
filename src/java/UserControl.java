@@ -21,18 +21,27 @@ import javax.servlet.http.HttpSession;
  * @author mac
  */
 public class UserControl extends HttpServlet {
-    DbConnection dbcon = null;
+    DbConnection dbcon =  new DbConnection();
  
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
- 
+        //  Delete  Comments
+        int id = Integer.parseInt(request.getParameter("id"));
+       System.out.println(id);
+       try{
+       dbcon.deleteComments(id);
+       response.sendRedirect("home.jsp?messsage=Delete Comments");
+    }
+       catch(Exception e){
+           e.printStackTrace();
+       }
     }
    @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
            
-        dbcon = new DbConnection();
+       
         try{
             
         
@@ -76,7 +85,7 @@ public class UserControl extends HttpServlet {
           
           
            }
-        }
+                   }
         catch(Exception e){
             e.printStackTrace();
         }
