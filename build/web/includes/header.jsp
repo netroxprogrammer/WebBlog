@@ -50,6 +50,10 @@
                    <li>
                         <a href="uplaodPost.jsp">add New Post</a>
                     </li>
+                      
+                   <li>
+                        <a href="myPosts.jsp">My Post</a>
+                    </li>
                     
                      <li>
                         <a href="logout.jsp">Logout</a>

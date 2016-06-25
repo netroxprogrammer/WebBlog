@@ -5,15 +5,15 @@
 <%@page import="Utils.UplaodStatus"%>
 <%@page import="DbHandler.DbConnection"%>
 <% 
-    String category = null;
-    if(request.getParameter("category")!=null){
-       category =  (String)request.getParameter("category");
-       
-    }
+     String category = null;
     
  if(session!=null && session.getAttribute("login")!=null){
           
-        
+    
+    if(request.getParameter("category")!=null){
+       category =  (String)request.getParameter("category");
+       
+    }   
     int  userid1= (Integer)session.getAttribute("id");
     DbConnection db = new DbConnection();  
     if(request.getParameter("submit")!=null){
@@ -33,7 +33,15 @@
     }
     
 %>
-
+<jsp:include page="includes/header.jsp" />
+<script>
+      function takeInput(){
+        var person = prompt("Enter Comment", "");
+if (person != null) {
+    var id = document.getElementById("button").value;
+ window.location.replace("home.jsp?comment="+person+"&uid="+id);
+}
+    }</script>
 <jsp:include page="includes/header.jsp" />
 <div class="row">
 <div class="form-group">
@@ -89,6 +97,8 @@ for(Comments c : cmnt){
     if(c.getUserid()== userid1){
     %>
     <a href="UserControl?id=<%=c.getId() %>" class="btn btn-link">delete</a>
+    
+        <button  type="button" id="button"  value="<%=c.getId() %>" name="edit" onclick="takeInput();" class="btn btn-link" >edit</button>
     <%}%>
     <br>
     

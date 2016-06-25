@@ -266,4 +266,18 @@ public class DbConnection {
           statement.executeUpdate(sql);
           getcon.close();
     }
+    
+    /*
+    Delete Post
+    */
+    public void deletePost(int id) throws Exception{
+
+          Statement statement = null;
+          Connection getcon = getConnection();
+          statement = getcon.createStatement();
+          String  sql =" Delete from poststatus where id='"+id+"' ";
+          statement.execute(sql);
+          getcon.close();
+    }
+    
 }
