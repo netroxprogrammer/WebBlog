@@ -35,7 +35,7 @@
       <td><%=post.getTime() %></td>
       <td><%=post.getCategory() %></td>
       <td> <a href="myPosts.jsp?delid=<%=post.getId() %>" class="btn btn-link">delete</a>
-       <a href="editPost.jsp?editid=<%=post.getId() %>" class="btn btn-link">update</a></td>
+       <a href="editPost.jsp?delid=<%=post.getId() %>" class="btn btn-link">update</a></td>
     </tr>
     
   </tbody>

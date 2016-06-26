@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Blog Post - Start Bootstrap Template</title>
+    <title>My Blog</title>
 
     <!-- Bootstrap Core CSS -->
 
@@ -56,8 +56,13 @@
                     </li>
                     
                      <li>
+                        <a href="chanegPass.jsp">change Password</a>
+                    </li>
+                     <li>
                         <a href="logout.jsp">Logout</a>
                     </li>
+                    
+                    
                     
   
             <%} else{ %>

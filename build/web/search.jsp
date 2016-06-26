@@ -69,7 +69,7 @@ if (person != null) {
     </div>
 <br><br><br>
 <% 
-ArrayList<UplaodStatus> list = db.searchPost(category);
+ArrayList<UplaodStatus> list = db.searchPost(category,-1);
 for(UplaodStatus post : list){
     
 %>

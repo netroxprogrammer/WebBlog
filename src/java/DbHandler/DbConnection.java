@@ -12,6 +12,7 @@ import Utils.UplaodStatus;
 import Utils.Users;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
@@ -223,13 +224,13 @@ public class DbConnection {
     /*
      Search Posts
     */
-    public ArrayList<UplaodStatus> searchPost(String catgName) throws Exception{
+    public ArrayList<UplaodStatus> searchPost(String catgName,int id) throws Exception{
           ArrayList<UplaodStatus>  list= new ArrayList();
         Connection con = getConnection();
         Statement statement =  null;
         ResultSet rs = null;
              statement = con.createStatement();
-          String  sql ="select *from poststatus where  category= '"+catgName+"'";
+          String  sql ="select *from poststatus where  category= '"+catgName+"' || id='"+id+"'";
            rs= statement.executeQuery(sql);
           if(rs!=null){
           while(rs.next()){
@@ -280,4 +281,34 @@ public class DbConnection {
           getcon.close();
     }
     
+    /*
+    Uodate Post
+    */
+    public void updatePost(UplaodStatus post) throws Exception{
+          PreparedStatement statement = null;
+          Connection getcon = getConnection();
+          statement = getcon.prepareStatement("update poststatus set title=? ,category=?,Description=?  where id=?");
+          statement.setString(1, post.getTitle());
+          statement.setString(2, post.getCategory());
+          statement.setString(3, post.getDescription());
+          statement.setInt(4, post.getId());
+
+          statement.executeUpdate();
+          getcon.close();
+    }
+    /*
+    Change Password
+    */
+    
+    public void  changePassword(Users user) throws Exception{
+        PreparedStatement statement = null;
+          Connection getcon = getConnection();
+          statement = getcon.prepareStatement("update users set password=? where id=?");
+          statement.setString(1,user.getUserPassword());
+          statement.setInt(2, user.getUserId());
+          statement.executeUpdate();
+          getcon.close();
+ 
+    }
 }
+
