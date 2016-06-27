@@ -58,6 +58,19 @@
                      <li>
                         <a href="chanegPass.jsp">change Password</a>
                     </li>
+                    <%
+                    if(session.getAttribute("role").equals("admin")){ 
+                    %>
+                    <li class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Accounts
+        <span class="caret"></span></a>
+        <ul class="dropdown-menu">
+          <li><a href="addusers.jsp">Add Users</a></li>
+          <li><a href="delusers.jsp">Delete User</a></li>
+        </ul>
+      </li>
+                  
+                    <%}%>
                      <li>
                         <a href="logout.jsp">Logout</a>
                     </li>

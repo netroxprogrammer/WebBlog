@@ -85,6 +85,32 @@ public class UserControl extends HttpServlet {
           
           
            }
+           //  add New User
+           if(request.getParameter("check").equalsIgnoreCase("adduser")){
+                String name = request.getParameter("userName");
+                String email = request.getParameter("email");
+               String  pass = request.getParameter("password");
+                 //  check email already Exist 
+          if(!dbcon.checkEmail(email)){     
+              Users user =  new Users();
+              user.setUserName(name);
+              user.setUserEmail(email);
+              user.setUserPassword(pass);
+              boolean check = dbcon.signUp(user);
+              if(check){    // check user singUp or not
+                  response.sendRedirect("delusers.jsp?msg=User Create");
+              }
+              else{
+              response.sendRedirect("signup.jsp?msg=Sorry Error Found");
+              }
+              
+          }else{
+              response.sendRedirect("signup.jsp?msg=email already  exist");
+          }
+          
+          
+           }
+           
                    }
         catch(Exception e){
             e.printStackTrace();
@@ -101,6 +127,7 @@ public class UserControl extends HttpServlet {
                session.setAttribute("login", new String("true"));
               session.setAttribute("name",  user.getUserName());
               session.setAttribute("id",  user.getUserId());
+               session.setAttribute("role",  user.getRole());
                return true; 
     
            }

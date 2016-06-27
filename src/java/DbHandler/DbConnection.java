@@ -310,5 +310,78 @@ public class DbConnection {
           getcon.close();
  
     }
+    
+    
+     /*
+    get all Users
+    */
+    public ArrayList<Users> getUsers() throws Exception{
+        ArrayList<Users>  list = new  ArrayList();
+        Statement statement = null;
+       Connection getcon  = getConnection();
+      statement =  getcon.createStatement();
+       String Sql = "select *from users";
+        ResultSet rs =statement.executeQuery(Sql);
+        while(rs.next()){
+          Users user = new Users();
+          user.setUserId(rs.getInt("id"));
+          user.setUserName(rs.getString("userName"));
+          user.setUserEmail(rs.getString("email"));
+          user.setUserPassword(rs.getString("password"));
+          user.setRole(rs.getString("role"));
+          list.add(user);
+        }
+        return  list;
+    }
+      /*
+    Delete Users
+    */
+    public void deleteUsers(int id) throws Exception{
+
+          Statement statement = null;
+          Connection getcon = getConnection();
+          statement = getcon.createStatement();
+          String  sql =" Delete from users where id='"+id+"' ";
+          statement.execute(sql);
+          getcon.close();
+    }
+    
+      /*
+    get all Users
+    */
+    public Users searchUser(int  id) throws Exception{
+           Users user = new Users();
+        Statement statement = null;
+       Connection getcon  = getConnection();
+      statement =  getcon.createStatement();
+       String Sql = "select *from users where id ='"+id+"'";
+        ResultSet rs =statement.executeQuery(Sql);
+        if(rs.next()){
+      
+          user.setUserId(rs.getInt("id"));
+          user.setUserName(rs.getString("userName"));
+          user.setUserEmail(rs.getString("email"));
+          user.setUserPassword(rs.getString("password"));
+          user.setRole(rs.getString("role"));
+        
+        }
+        return  user;
+    }
+    /**
+     * update Users...
+     */
+    
+    public void updateUsers(Users user) throws Exception {
+         PreparedStatement statement = null;
+          Connection getcon = getConnection();
+          statement = getcon.prepareStatement("update users set userName=? ,email=?,password=?  where id=?");
+          statement.setString(1, user.getUserName());
+          statement.setString(2, user.getUserEmail());
+          statement.setString(3, user.getUserPassword());
+          statement.setInt(4, user.getUserId());
+
+          statement.executeUpdate();
+          getcon.close();
+    }
 }
 
