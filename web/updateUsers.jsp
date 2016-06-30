@@ -37,6 +37,7 @@
 Users users = db.searchUser(id);
 
 %>
+ <div class="row"><div class="col-sm-9 col-sm-offset-3">
 <p class="btn btn-primary btn-lg btn-block">  Update User </p> <br><br>
 <form class="form-horizontal"  action = "updateUsers.jsp" method="get">
      <input type="hidden" name="hid" value="<%=users.getUserId() %>" >
@@ -65,7 +66,7 @@ Users users = db.searchUser(id);
     </div>
   </div>
 </form>
-
+     </div></div>
  <%  
 
                }            }

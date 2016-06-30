@@ -12,7 +12,7 @@
 }
             else{
                %>
-            
+               <div class="row"><div class="col-sm-9 col-sm-offset-3">
 <p class="btn btn-primary btn-lg btn-block">   Please Login </p> <br><br>
 <form class="form-horizontal" action = "UserControl" method="post">
  <div class="form-group">
@@ -33,6 +33,7 @@
       <input type="submit"  value="Login" class="btn btn-default">
     </div>
   </div>
+    </div></div>
 </form>
        
            <% }

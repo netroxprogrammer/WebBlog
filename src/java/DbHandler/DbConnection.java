@@ -66,7 +66,7 @@ public class DbConnection {
           Statement statement = null;
           Connection getcon = getConnection();
              statement = getcon.createStatement();
-          String  sql =" insert  into users(userName, email, password,role) values('"+user.getUserName()+"','"+user.getUserEmail()+"','"+user.getUserPassword()+"','user')";
+          String  sql =" insert  into users(userName, email, password,role) values('"+user.getUserName()+"','"+user.getUserEmail()+"','"+user.getUserPassword()+"','"+user.getRole()+"')";
           statement.execute(sql);
           getcon.close();
        return true;

@@ -14,6 +14,7 @@
        
      
 %>
+ <div class="row"><div class="col-sm-9 col-sm-offset-3">
 <table class="table table-inverse">
   <thead>
     <tr>
@@ -39,7 +40,7 @@
       <a href="updateUsers.jsp?delid=<%=post.getUserId() %>" class="btn btn-link">update</a>
        
       <%
-      } else{%>
+      } if(post.getRole().equalsIgnoreCase("fromAdmin")){%>
     <a href="delusers.jsp?delid=<%=post.getUserId() %>" class="btn btn-link">delete</a>
        <a href="updateUsers.jsp?delid=<%=post.getUserId() %>" class="btn btn-link">update</a></td>
   <%}%>    
@@ -56,4 +57,6 @@
      response.sendRedirect("login.jsp");
  }
 %>
+     </div>
+ </div>
 <jsp:include page="includes/footer.jsp" />

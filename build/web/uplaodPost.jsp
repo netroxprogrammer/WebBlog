@@ -12,7 +12,7 @@
 
 
 <jsp:include page="includes/header.jsp" />
-
+ <div class="row"><div class="col-sm-9 col-sm-offset-3">
 <p class="btn btn-primary btn-lg btn-block"> Post Status</p>
 <br><br><br>
 <form class="form-horizontal" action="PostStatus" method="get">
@@ -49,6 +49,7 @@
   <input type="submit" name="submit"  class="btn btn-primary btn-lg">
    </center>
 </form>
+     </div></div>
  <%  
  
             }

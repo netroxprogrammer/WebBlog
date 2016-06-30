@@ -70,7 +70,9 @@ public class UserControl extends HttpServlet {
               Users user =  new Users();
               user.setUserName(name);
               user.setUserEmail(email);
-              user.setUserPassword(pass);
+              user.setUserPassword(pass); 
+              user.setRole("user");
+              
               boolean check = dbcon.signUp(user);
               if(check){    // check user singUp or not
                   response.sendRedirect("login.jsp?msg=Please Login");
@@ -89,13 +91,14 @@ public class UserControl extends HttpServlet {
            if(request.getParameter("check").equalsIgnoreCase("adduser")){
                 String name = request.getParameter("userName");
                 String email = request.getParameter("email");
-               String  pass = request.getParameter("password");
+                String  pass = request.getParameter("password");
                  //  check email already Exist 
           if(!dbcon.checkEmail(email)){     
               Users user =  new Users();
               user.setUserName(name);
               user.setUserEmail(email);
               user.setUserPassword(pass);
+              user.setRole("fromAdmin");
               boolean check = dbcon.signUp(user);
               if(check){    // check user singUp or not
                   response.sendRedirect("delusers.jsp?msg=User Create");

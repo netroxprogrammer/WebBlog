@@ -14,7 +14,7 @@
                  response.sendRedirect("logout.jsp");
                 }
            %>  
-          
+           <div class="row"><div class="col-sm-9 col-sm-offset-3">
            <form class="form-horizontal" action = "chanegPass.jsp" method="post">
  <div class="form-group">
     <label for="newpass" class="col-sm-2 control-label">New Password</label>
@@ -29,6 +29,7 @@
     </div>
   </div>
 </form>
+               </div></div>
        
            
             <%}
