@@ -383,5 +383,38 @@ public class DbConnection {
           statement.executeUpdate();
           getcon.close();
     }
+    
+    /*#################################33
+                 Test Case funcitons
+      ####################################*/
+    
+     /**
+      *  Login Test Case
+      * @param email
+      * @param password
+      * @return
+      * @throws Exception 
+      */
+    public boolean LoginTestCase(String email, String password) throws Exception{
+       Users user = new Users();
+       Connection con = getConnection();
+        Statement statement =  null;
+        ResultSet rs = null;
+        String sql = "select *from users where email='"+email+"' AND password='"+password+"'";
+        
+        statement =  con.createStatement();
+        rs = statement.executeQuery(sql);
+        if(rs!=null){
+         if(rs.next()){
+            return true;
+         }
+        }
+         return false;    
+    }
+    
+   
+    
+    
+    
 }
 
