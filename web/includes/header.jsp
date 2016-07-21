@@ -60,7 +60,10 @@
                      <li>
                         <a href="logout.jsp">Logout</a>
                     </li>
-                    
+                       <li>
+                            <a href="myPosts.jsp"><i class="fa fa-bar-chart-o fa-fw"></i>My Accounts<span class="fa arrow"></span></a>
+                            
+                        </li>
                     
                     
   

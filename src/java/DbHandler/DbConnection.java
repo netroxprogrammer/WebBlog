@@ -61,7 +61,9 @@ public class DbConnection {
          return  user;
     
     }
-    
+    /*
+    Sign up Funcitn
+    */
     public boolean signUp(Users user) throws  Exception{
           Statement statement = null;
           Connection getcon = getConnection();
