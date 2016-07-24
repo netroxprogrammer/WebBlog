@@ -14,7 +14,7 @@
      
 %>
  <div class="row"><div class="col-sm-9 col-sm-offset-3">
-         <p align="right"><a href="uplaodPost.jsp">Add New Post</a></p>
+         <p align="left"><a href="uplaodPost.jsp" class="btn btn-primary">Add New Post</a></p>
 <table class="table table-inverse">
   <thead>
     <tr>

@@ -94,6 +94,9 @@
                         <center> <img src="images/profile.png" class="img-responsive" alt="profile Image" width="100" height="80">
                             <a href="logout.jsp">Logout</a>
                         </center>
+                           <%
+                    if(session.getAttribute("role").equals("admin")){ 
+                    %>
                             <li>
                             <a href="chanegPass.jsp"><i class="fa fa-dashboard fa-fw"></i> Security</a>
                         </li>
@@ -105,9 +108,7 @@
                             <a href="myPosts.jsp"><i class="fa fa-bar-chart-o fa-fw"></i>All Posts<span class="fa arrow"></span></a>
                             
                         </li>
-                        <%
-                    if(session.getAttribute("role").equals("admin")){ 
-                    %>
+                     
                         <li>
                             <a href="addusers.jsp"><i class="fa fa-bar-chart-o fa-fw"></i> Add Users<span class="fa arrow"></span></a>
                             
