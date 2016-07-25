@@ -100,12 +100,10 @@
                             <li>
                             <a href="chanegPass.jsp"><i class="fa fa-dashboard fa-fw"></i> Security</a>
                         </li>
-                        <li>
-                            <a href="uplaodPost.jsp"><i class="fa fa-bar-chart-o fa-fw"></i> add New Post<span class="fa arrow"></span></a>
-                            
-                        </li>
+                           
                          <li>
-                            <a href="myPosts.jsp"><i class="fa fa-bar-chart-o fa-fw"></i>All Posts<span class="fa arrow"></span></a>
+                       
+                             <a href="myPosts.jsp"><i class="fa fa-bar-chart-o fa-fw"></i>All Posts<span class="fa arrow"></span></a>
                             
                         </li>
                      
