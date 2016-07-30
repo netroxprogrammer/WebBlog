@@ -1,5 +1,17 @@
 <jsp:include page="includes/header.jsp" />
+<%
+String msg = request.getParameter("msg");
 
+if( msg!=null){
+    %>
+    
+    <script>
+        alert("User Already Exist");
+        
+    </script>
+    <%
+}
+%>
 <p class="btn btn-primary btn-lg btn-block">   Please Sign Up </p> <br><br>
 <form class="form-horizontal"  action = "UserControl" method="post">
    <div class="form-group">

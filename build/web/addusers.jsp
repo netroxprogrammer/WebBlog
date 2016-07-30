@@ -1,5 +1,7 @@
 <jsp:include page="includes/header.jsp" />
 
+
+
 <p class="btn btn-primary btn-lg btn-block">   add New User</p> <br><br>
 <form class="form-horizontal"  action = "UserControl" method="post">
    <div class="form-group">

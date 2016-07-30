@@ -175,10 +175,9 @@ if (person != null) {
     
     
 </script>
- <div class="row"><div class="col-sm-9 col-sm-offset-3">
-<div class="row">
+ <div class="row">
+     <div class="col-sm-9 col-sm-offset-3">
 
-    </div>
 <br><br><br>
 <% 
 ArrayList<UplaodStatus> list = db.readPosts();
@@ -186,6 +185,7 @@ for(UplaodStatus post : list){
     
 %>
 <div class="row">
+    
     
     <h4 class="media-heading"><font color="blue"><%=post.getTitle()%></font><br>
     <small><%=post.getTime() %></small> <br>
@@ -196,6 +196,7 @@ for(UplaodStatus post : list){
  
  
  <div class="row  well">  
+ 
      <% 
 ArrayList<Comments> cmnt = db.readComments(post.getId());
 for(Comments c : cmnt){
@@ -217,11 +218,12 @@ for(Comments c : cmnt){
     <br>
     
  </h4>
+    
 </form
+
 <%
 }
 %>
-     
 <label>Write Comments:</label><br>
 <form>
 <div class="col-sm-7">
@@ -235,6 +237,7 @@ for(Comments c : cmnt){
  </div>
      </div>
  </div>
+         
 <%
 }
  }
@@ -242,5 +245,5 @@ for(Comments c : cmnt){
      response.sendRedirect("login.jsp");
  }
 %>
-
+  
 <jsp:include page="includes/footer.jsp" />
