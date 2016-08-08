@@ -15,6 +15,7 @@ if( msg!=null){
 <p class="btn btn-primary btn-lg btn-block">   Please Sign Up </p> <br><br>
 <form class="form-horizontal"  action = "UserControl" method="post">
    <div class="form-group">
+       
     <label for="userName" class="col-sm-2 control-label">UserName</label>
     <div class="col-sm-10">
       <input type="text" class="form-control"  name="userName" id="userName" name="userName" placeholder="userName">

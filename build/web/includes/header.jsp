@@ -115,7 +115,21 @@
                             <a href="delusers.jsp"><i class="fa fa-bar-chart-o fa-fw"></i> Delete/update User<span class="fa arrow"></span></a>
                             
                         </li>
-                        <%} }
+                        <%}else{%>
+                        
+                            <li>
+                            <a href="chanegPass.jsp"><i class="fa fa-dashboard fa-fw"></i> Security</a>
+                        </li>
+                           
+                         <li>
+                       
+                             <a href="myPosts.jsp"><i class="fa fa-bar-chart-o fa-fw"></i>All Posts<span class="fa arrow"></span></a>
+                            
+                        </li>
+                        <%
+            
+            }
+            }
                         %>
                        
                                     </ul>
